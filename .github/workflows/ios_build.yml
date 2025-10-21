@@ -1,0 +1,32 @@
+name: IOS Build
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+  push:
+    branches: [ main, develop ]
+
+jobs:
+  ios_build:
+    needs: [ android_build ]
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          flutter-version: '3.35.2'
+
+      - name: Install CocoaPods
+        run: |
+          sudo gem install cocoapods
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build iOS App for validation
+        run: flutter build ios --no-codesign --simulator
+        working-directory: ${{ github.workspace }}
