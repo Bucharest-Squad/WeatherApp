@@ -49,30 +49,26 @@ class WeatherDetailsCard extends StatelessWidget {
         children: [
           SvgPicture.asset(info.iconPath),
           const SizedBox(height: 8),
-          Column(
-            children: [
-              Text(
-                info.value,
-                style: const TextStyle(
-                  fontFamily: urbanist,
-                  color: AppColors.dayText87,
-                  fontSize: 20,
-                  letterSpacing: 0.25,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              const SizedBox(height: 2),
-              Text(
-                info.label,
-                style: const TextStyle(
-                  fontFamily: urbanist,
-                  color: AppColors.dayText60,
-                  fontSize: 14,
-                  letterSpacing: 0.25,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ],
+          Text(
+            info.value,
+            style: const TextStyle(
+              fontFamily: urbanist,
+              color: AppColors.dayText87,
+              fontSize: 20,
+              letterSpacing: 0.25,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const SizedBox(height: 2),
+          Text(
+            info.label,
+            style: const TextStyle(
+              fontFamily: urbanist,
+              color: AppColors.dayText60,
+              fontSize: 14,
+              letterSpacing: 0.25,
+              fontWeight: FontWeight.w400,
+            ),
           ),
         ],
       ),
