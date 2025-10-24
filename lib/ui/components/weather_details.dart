@@ -12,18 +12,24 @@ class WeatherDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        crossAxisSpacing: 6,
-        mainAxisSpacing: 6,
-        mainAxisExtent: 131,
-      ),
-      itemCount: weatherInfo.length,
-      itemBuilder: (context, index) {
-        return WeatherDetailsCard(info: weatherInfo[index]);
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final crossAxisCount = constraints.maxWidth < 600 ? 3 : 6;
+
+        return GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: crossAxisCount,
+            crossAxisSpacing: 6,
+            mainAxisSpacing: 6,
+            mainAxisExtent: 131,
+          ),
+          itemCount: weatherInfo.length,
+          itemBuilder: (context, index) {
+            return WeatherDetailsCard(info: weatherInfo[index]);
+          },
+        );
       },
     );
   }
