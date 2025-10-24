@@ -10,6 +10,7 @@ class AppColors {
   static const Color dayText87 = Color(0xDE000000);
   static const Color dayBackground = Color(0xB3FFFFFF);
   static const Color dayElementBackgroundColor = Color(0xFF060414);
+  static const Color daySeparator = Color(0x3D060414);
   static const Color dayBackgroundStart = Color(0xFF87CEFA);
   static const Color dayBackgroundEnd = Color(0xFFFFFFFF);
   static const Color dayBorder = Color(0x14060414);
