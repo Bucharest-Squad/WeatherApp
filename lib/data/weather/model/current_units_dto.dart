@@ -1,5 +1,3 @@
-import 'package:json_annotation/json_annotation.dart';
-
 class CurrentUnitsDto {
   final String? apparentTemperatureUnit;
   final String? rainUnit;
@@ -30,7 +28,6 @@ class CurrentUnitsDto {
       windSpeedUnit: json['wind_speed_10m'] as String?,
     );
   }
-
 
   Map<String, dynamic> toJson() {
     return {
