@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:weather_app/ui/model/daily_weather.dart';
-import '../../gen/assets.gen.dart';
 import '../cubit/theme/theme_cubit.dart';
 
 class NextDaysWeatherForecastTable extends StatelessWidget {
@@ -81,7 +80,7 @@ class _DailyWeatherDetails extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 _TempDisplay(
-                  icon: Assets.images.arrowUp.path,
+                  icon: 'assets/images/arrow_up.svg',
                   text: '${dailyWeather.maxTemperature}°C',
                 ),
 
@@ -97,7 +96,7 @@ class _DailyWeatherDetails extends StatelessWidget {
                 ),
 
                 _TempDisplay(
-                  icon: Assets.images.arrowDown.path,
+                  icon: 'assets/images/arrow_down.svg',
                   text: '${dailyWeather.minTemperature}°C',
                 ),
               ],
