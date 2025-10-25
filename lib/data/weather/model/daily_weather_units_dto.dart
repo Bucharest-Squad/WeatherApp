@@ -19,13 +19,4 @@ class DailyWeatherUnitsDto {
       uvIndexUnit: json['uv_index_max'] as String?,
     );
   }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'temperature_2m_max': temperatureMaxUnit,
-      'temperature_2m_min': temperatureMinUnit,
-      'time': timeUnit,
-      'uv_index_max': uvIndexUnit,
-    };
-  }
 }

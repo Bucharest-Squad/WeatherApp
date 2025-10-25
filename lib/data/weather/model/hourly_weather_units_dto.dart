@@ -13,11 +13,4 @@ class HourlyWeatherUnitsDto {
       timeUnit: json['time'] as String?,
     );
   }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'temperature_2m': temperatureUnit,
-      'time': timeUnit,
-    };
-  }
 }

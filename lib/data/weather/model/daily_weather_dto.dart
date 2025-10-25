@@ -29,15 +29,4 @@ class DailyWeatherDto {
       (json['weather_code'] as List?)?.map((e) => e as int).toList(),
     );
   }
-
-
-  Map<String, dynamic> toJson() {
-    return {
-      'temperature_2m_max': temperatureMax,
-      'temperature_2m_min': temperatureMin,
-      'time': time,
-      'uv_index_max': uvIndexMax,
-      'weather_code': weatherCode,
-    };
-  }
 }

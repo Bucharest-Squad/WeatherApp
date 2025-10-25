@@ -19,13 +19,4 @@ class LocationDto {
       city: (json['city']),
     );
   }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'latitude': latitude,
-      'longitude': longitude,
-      'country': country,
-      'city': city,
-    };
-  }
 }

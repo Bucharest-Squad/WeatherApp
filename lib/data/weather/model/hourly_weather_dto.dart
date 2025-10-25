@@ -22,12 +22,4 @@ class HourlyWeatherDto {
           .toList(),
     );
   }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'temperature_2m': temperature,
-      'time': time,
-      'weather_code': weatherCode,
-    };
-  }
 }

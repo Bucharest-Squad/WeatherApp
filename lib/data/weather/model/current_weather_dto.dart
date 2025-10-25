@@ -37,20 +37,4 @@ class CurrentWeatherDto {
       isDay: json['is_day'] as int?,
     );
   }
-
-
-  Map<String, dynamic> toJson() {
-    return {
-      'apparent_temperature': apparentTemperature,
-      'interval': interval,
-      'rain': rain,
-      'relative_humidity_2m': relativeHumidity,
-      'surface_pressure': surfacePressure,
-      'temperature_2m': temperature,
-      'time': time,
-      'weather_code': weatherCode,
-      'wind_speed_10m': windSpeed,
-      'is_day': isDay,
-    };
-  }
 }

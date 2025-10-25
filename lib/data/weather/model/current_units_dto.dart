@@ -28,16 +28,4 @@ class CurrentUnitsDto {
       windSpeedUnit: json['wind_speed_10m'] as String?,
     );
   }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'apparent_temperature': apparentTemperatureUnit,
-      'rain': rainUnit,
-      'relative_humidity_2m': relativeHumidityUnit,
-      'surface_pressure': surfacePressureUnit,
-      'temperature_2m': temperatureUnit,
-      'time': timeUnit,
-      'wind_speed_10m': windSpeedUnit,
-    };
-  }
 }

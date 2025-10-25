@@ -44,15 +44,4 @@ class WeatherDto {
           : null,
     );
   }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'current': currentWeather?.toJson(),
-      'current_units': currentUnits?.toJson(),
-      'daily': dailyWeather?.toJson(),
-      'daily_units': dailyWeatherUnits?.toJson(),
-      'hourly': hourly?.toJson(),
-      'hourly_units': hourlyWeatherUnits?.toJson(),
-    };
-  }
 }
