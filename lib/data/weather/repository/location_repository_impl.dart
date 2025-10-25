@@ -1,6 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:weather_app/data/weather/mapper/location_mapper.dart';
 import 'package:weather_app/data/weather/model/location_dto.dart';
-import 'package:weather_app/data/weather/repository/location_repository.dart';
+import 'package:weather_app/domain/entity/location.dart';
+
+import '../../../domain/repository/location_repository.dart';
 
 class LocationRepositoryImpl extends LocationRepository {
   final Dio dio;
@@ -8,7 +11,7 @@ class LocationRepositoryImpl extends LocationRepository {
   LocationRepositoryImpl(this.dio);
 
   @override
-  Future<LocationDto> getLocation() async {
+  Future<Location> getCurrentLocation() async {
     try {
       final response = await dio.get(
         "http://ip-api.com/json/",
@@ -19,7 +22,9 @@ class LocationRepositoryImpl extends LocationRepository {
       );
 
       if (response.statusCode == 200 && response.data != null) {
-        return LocationDto.fromJson(response.data);
+        return LocationMapper.toDomain(
+          await LocationDto.fromJson(response.data),
+        );
       } else {
         throw Exception(
           'Failed to fetch location. Status: ${response.statusCode}',
