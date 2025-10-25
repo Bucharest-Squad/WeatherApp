@@ -1,94 +1,127 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../widgets/glassmorphism_container.dart';
 import 'max_min_temp_card.dart';
 import '../cubit/theme/theme_cubit.dart';
 import 'package:weather_app/ui/theme/font_families.dart';
+import '../model/current_weather.dart';
 
 class CurrentWeatherCard extends StatelessWidget {
-  const CurrentWeatherCard({super.key});
+  final CurrentWeather currentWeather;
 
-  final String location = 'Baghdad';
-  final String temperature = '24';
-  final String unit = '°C';
-  final String description = 'Snow';
-  final String highTemp = '32';
-  final String lowTemp = '20';
+  const CurrentWeatherCard({
+    super.key,
+    required this.currentWeather,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.watch<ThemeCubit>().state;
-    final iconColor = (theme.brightness == Brightness.light)
-        ? const Color.fromARGB(255, 12, 57, 133)
-        : theme.colors.onPrimary;
+    final theme = context
+        .watch<ThemeCubit>()
+        .state;
 
-    return GlassmorphismContainer(
-      width: 350,
-      height: 550,
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Icon(Icons.location_on, size: 24, color: theme.colors.text87),
-                const SizedBox(width: 8),
-                Text(
-                  location,
-                  style: TextStyle(
-                      fontFamily: urbanist,
-                      fontSize: 22, fontWeight: FontWeight.bold, color: theme.colors.text87),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          SizedBox(
+            width: 250,
+            height: 250,
+            child: Stack(
+              clipBehavior: Clip.none,
+              alignment: Alignment.center,
+              children: [
+                Positioned(
+                  left: -15,
+                  top: 5,
+                  child: Container(
+                    width: 250,
+                    height: 250,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: RadialGradient(
+                        colors: [
+                          Color.fromRGBO(
+                            theme.colors.weatherIconColor.red,
+                            theme.colors.weatherIconColor.green,
+                            theme.colors.weatherIconColor.blue,
+                            0.25,
+                          ),
+                          Color.fromRGBO(
+                            theme.colors.weatherIconColor.red,
+                            theme.colors.weatherIconColor.green,
+                            theme.colors.weatherIconColor.blue,
+                            0.08,
+                          ),
+                          Colors.transparent,
+                        ],
+                        stops: const [0.0, 0.3, 1.0],
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color.fromRGBO(
+                            theme.colors.weatherIconColor.red,
+                            theme.colors.weatherIconColor.green,
+                            theme.colors.weatherIconColor.blue,
+                            0.2,
+                          ),
+                          blurRadius: 70,
+                          spreadRadius: 5,
+                          offset: const Offset(-5, 5),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: 5,
+                  child: SizedBox(
+                    width: 220,
+                    height: 200,
+                    child: Image.asset(
+                      currentWeather.image,
+                      width: 220,
+                      height: 200,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
                 ),
               ],
             ),
+          ),
 
-            Container(
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                      color: theme.colors.primary.withOpacity(0.4),
-                      blurRadius: 150.0,
-                      spreadRadius: 1.0,
-                      offset: const Offset(0, 0),
-                      blurStyle: BlurStyle.normal
-                  ),
-                ],
-              ),
-              child: Icon(
-                Icons.ac_unit,
-                size: 150,
-                color: iconColor,
-              ),
+          Text(
+            '${currentWeather.temperature}${currentWeather.unit}',
+            style: TextStyle(
+              fontFamily: urbanist,
+              fontSize: 64,
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.25,
+              color: theme.colors.temperatureColor,
+              height: 1.0,
             ),
+          ),
 
-            Text(
-              '$temperature$unit',
-              style: TextStyle(
-                fontFamily: urbanist,
-                fontSize: 90,
-                fontWeight: FontWeight.w200,
-                color: theme.colors.text,
-              ),
+          Text(
+            currentWeather.status,
+            style: TextStyle(
+              fontFamily: urbanist,
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              letterSpacing: 0.25,
+              color: theme.colors.statusColor,
+              height: 1.0,
             ),
+          ),
+          const SizedBox(height: 12),
 
-            Text(
-              description,
-              style: TextStyle(
-                fontFamily: urbanist,
-                fontSize: 30,
-                fontWeight: FontWeight.w400,
-                color: theme.colors.text60,
-              ),
-            ),
-
-            Divider(color: theme.colors.border, thickness: 1.0, indent: 40, endIndent: 40),
-
-            MaxMinTempCard(highTemp: highTemp, lowTemp: lowTemp, unit: unit),
-          ],
-        ),
+          MaxMinTempCard(
+            highTemp: currentWeather.highTemp,
+            lowTemp: currentWeather.lowTemp,
+            unit: currentWeather.unit,
+          ),
+        ],
       ),
     );
   }
