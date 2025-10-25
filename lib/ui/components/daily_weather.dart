@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:weather_app/ui/model/daily_weather.dart';
 import 'package:weather_app/ui/theme/font_families.dart';
-import '../theme/app_colors.dart';
+import '../cubit/theme/theme_cubit.dart';
 
 class NextDaysWeatherForecastTable extends StatelessWidget {
   final List<DailyWeatherInfo> dailyWeatherList;
@@ -11,12 +12,14 @@ class NextDaysWeatherForecastTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.watch<ThemeCubit>().state;
+
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.dayBackground,
+        color: theme.colors.background,
         shape: BoxShape.rectangle,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: AppColors.dayBorder, width: 1),
+        border: Border.all(color: theme.colors.border, width: 1),
       ),
       child: ListView.separated(
         padding: EdgeInsets.zero,
@@ -29,10 +32,10 @@ class NextDaysWeatherForecastTable extends StatelessWidget {
         },
 
         separatorBuilder: (context, index) {
-          return const Divider(
+          return Divider(
             height: 1,
             thickness: 1,
-            color: AppColors.dayBorder,
+            color: theme.colors.border,
           );
         },
       ),
@@ -47,6 +50,7 @@ class _DailyWeatherDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.watch<ThemeCubit>().state;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
       child: Row(
@@ -57,11 +61,11 @@ class _DailyWeatherDetails extends StatelessWidget {
               child: Text(
                 dailyWeather.dayOfWeek,
                 textAlign: TextAlign.start,
-                style: const TextStyle(
+                style:  TextStyle(
                   fontFamily: urbanist,
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
-                  color: AppColors.dayText60,
+                  color:theme.colors.text60,
                 ),
               ),
             ),
@@ -84,13 +88,13 @@ class _DailyWeatherDetails extends StatelessWidget {
                   text: '${dailyWeather.maxTemperature}°C',
                 ),
 
-                const Padding(
+                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 4.0),
                   child: Text(
                     '|',
                     style: TextStyle(
                       fontFamily: urbanist,
-                      color: AppColors.daySeparator,
+                      color: theme.colors.backgroundStart.withAlpha(14),
                       fontWeight: FontWeight.w100,
                     ),
                   ),
@@ -118,10 +122,11 @@ class _TempDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.watch<ThemeCubit>().state;
     return Row(
       children: [
         SvgPicture.asset(icon, height: 12, colorFilter: ColorFilter.mode(
-          AppColors.dayText87,
+          theme.colors.text87,
           BlendMode.srcIn,
         ),
         ),
@@ -131,7 +136,7 @@ class _TempDisplay extends StatelessWidget {
           style: TextStyle(
             fontFamily: urbanist,
             fontSize: 14,
-            color: AppColors.dayText87,
+            color: theme.colors.text87,
             fontWeight: FontWeight.w500,
             letterSpacing: 0.25,
           ),
