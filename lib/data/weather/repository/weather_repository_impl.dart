@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:weather_app/data/weather/mapper/weather_mapper.dart';
 import 'package:weather_app/data/weather/model/weather_dto.dart';
-import 'package:weather_app/data/weather/repository/weather_repository.dart';
+import 'package:weather_app/domain/entity/weather.dart';
+import 'package:weather_app/domain/repository/weather_repository.dart';
 
 const String openMeteoApi = 'https://api.open-meteo.com/v1/forecast';
 
@@ -10,7 +12,7 @@ class WeatherRepositoryImpl implements WeatherRepository {
   WeatherRepositoryImpl(this.dio);
 
   @override
-  Future<WeatherDto> getWeather(double latitude, double longitude) async {
+  Future<Weather> getWeatherForecast(double latitude, double longitude) async {
     try {
       final response = await dio.get(
         openMeteoApi,
@@ -26,7 +28,7 @@ class WeatherRepositoryImpl implements WeatherRepository {
       );
 
       if (response.statusCode == 200 && response.data != null) {
-        return WeatherDto.fromJson(response.data);
+        return WeatherMapper.toDomain(WeatherDto.fromJson(response.data));
       } else {
         throw Exception(
           'Failed to fetch weather data. Status: ${response.statusCode}',
