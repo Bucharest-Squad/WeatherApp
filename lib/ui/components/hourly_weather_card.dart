@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/ui/theme/app_colors.dart';
-import 'package:weather_app/ui/theme/app_theme.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/ui/theme/font_families.dart';
 
-import '../../theme/app_themes.dart';
-
-final AppTheme appTheme = DayTheme();
+import '../cubit/theme/theme_cubit.dart';
 
 class HourlyWeatherCard extends StatelessWidget {
   final String weatherImage;
@@ -23,6 +21,7 @@ class HourlyWeatherCard extends StatelessWidget {
   @override
   @override
   Widget build(BuildContext context) {
+    final theme = context.watch<ThemeCubit>().state;
     return SizedBox(
       width: 88,
       child: Stack(
@@ -35,42 +34,42 @@ class HourlyWeatherCard extends StatelessWidget {
               height: 120,
               width: 88,
               decoration: BoxDecoration(
-                color: AppColors.dayBackground,
+                color: theme.colors.background,
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: AppColors.dayBorder, width: 1),
+                border: Border.all(color: theme.colors.border, width: 1),
               ),
               child: Padding(
-                padding: const EdgeInsets.only(bottom: 8),
+                padding: const EdgeInsets.only(bottom: 16),
                 child: Column(
-                spacing: 4,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    degree,
-                    style: TextStyle(
-                      fontFamily: appTheme.fontFamily,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: .25,
-                      color: AppColors.dayText87,
+                  spacing: 4,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      degree,
+                      style: TextStyle(
+                        fontFamily: urbanist,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: .25,
+                        color: theme.colors.text87,
+                      ),
                     ),
-                  ),
-                  Text(
-                    hour,
-                    style: TextStyle(
-                      fontFamily: appTheme.fontFamily,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: .25,
-                      color: AppColors.dayText60,
+                    Text(
+                      hour,
+                      style: TextStyle(
+                        fontFamily: urbanist,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: .25,
+                        color: theme.colors.text60,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
-          ),
-          Image.asset(weatherImage, width: 64),
+          Image.asset(weatherImage, height: 58, fit: BoxFit.cover),
         ],
       ),
     );
