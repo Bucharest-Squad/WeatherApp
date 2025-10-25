@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/ui/theme/font_families.dart';
-
 import '../cubit/theme/theme_cubit.dart';
 
 class HourlyWeatherCard extends StatelessWidget {
   final String weatherImage;
-
   final String degree;
-
   final String hour;
 
   const HourlyWeatherCard({
@@ -47,7 +43,6 @@ class HourlyWeatherCard extends StatelessWidget {
                     Text(
                       degree,
                       style: TextStyle(
-                        fontFamily: urbanist,
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                         letterSpacing: .25,
@@ -57,7 +52,6 @@ class HourlyWeatherCard extends StatelessWidget {
                     Text(
                       hour,
                       style: TextStyle(
-                        fontFamily: urbanist,
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                         letterSpacing: .25,

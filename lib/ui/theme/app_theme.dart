@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/gen/fonts.gen.dart';
 import 'package:weather_app/ui/theme/app_colors.dart';
-import 'font_families.dart';
 
 abstract class AppTheme {
   final Brightness brightness;
@@ -10,7 +10,7 @@ abstract class AppTheme {
 
   ThemeData get themeData {
     return ThemeData(
-      fontFamily: urbanist,
+      fontFamily: FontFamily.urbanist,
       brightness: brightness,
       primaryColor: colors.primary,
       colorScheme: ColorScheme.fromSeed(

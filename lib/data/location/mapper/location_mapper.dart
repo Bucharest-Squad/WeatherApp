@@ -1,4 +1,4 @@
-import 'package:weather_app/data/weather/model/location_dto.dart';
+import 'package:weather_app/data/location/model/location_dto.dart';
 import 'package:weather_app/domain/entity/location.dart';
 
 class LocationMapper {

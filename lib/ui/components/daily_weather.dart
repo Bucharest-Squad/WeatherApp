@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:weather_app/ui/model/daily_weather.dart';
-import 'package:weather_app/ui/theme/font_families.dart';
-
 import '../../gen/assets.gen.dart';
 import '../cubit/theme/theme_cubit.dart';
 
 class NextDaysWeatherForecastTable extends StatelessWidget {
   final List<DailyWeatherInfo> dailyWeatherList;
 
-  const NextDaysWeatherForecastTable ({super.key, required this.dailyWeatherList});
+  const NextDaysWeatherForecastTable({
+    super.key,
+    required this.dailyWeatherList,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +35,7 @@ class NextDaysWeatherForecastTable extends StatelessWidget {
         },
 
         separatorBuilder: (context, index) {
-          return Divider(
-            height: 1,
-            thickness: 1,
-            color: theme.colors.border,
-          );
+          return Divider(height: 1, thickness: 1, color: theme.colors.border);
         },
       ),
     );
@@ -63,11 +60,10 @@ class _DailyWeatherDetails extends StatelessWidget {
               child: Text(
                 dailyWeather.dayOfWeek,
                 textAlign: TextAlign.start,
-                style:  TextStyle(
-                  fontFamily: urbanist,
+                style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
-                  color:theme.colors.text60,
+                  color: theme.colors.text60,
                 ),
               ),
             ),
@@ -81,7 +77,6 @@ class _DailyWeatherDetails extends StatelessWidget {
 
           Expanded(
             child: Row(
-
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
@@ -90,12 +85,11 @@ class _DailyWeatherDetails extends StatelessWidget {
                   text: '${dailyWeather.maxTemperature}°C',
                 ),
 
-                 Padding(
+                Padding(
                   padding: EdgeInsets.symmetric(horizontal: 4.0),
                   child: Text(
                     '|',
                     style: TextStyle(
-                      fontFamily: urbanist,
                       color: theme.colors.backgroundStart.withAlpha(14),
                       fontWeight: FontWeight.w100,
                     ),
@@ -106,7 +100,6 @@ class _DailyWeatherDetails extends StatelessWidget {
                   icon: Assets.images.arrowDown.path,
                   text: '${dailyWeather.minTemperature}°C',
                 ),
-
               ],
             ),
           ),
@@ -127,16 +120,15 @@ class _TempDisplay extends StatelessWidget {
     final theme = context.watch<ThemeCubit>().state;
     return Row(
       children: [
-        SvgPicture.asset(icon, height: 12, colorFilter: ColorFilter.mode(
-          theme.colors.text87,
-          BlendMode.srcIn,
-        ),
+        SvgPicture.asset(
+          icon,
+          height: 12,
+          colorFilter: ColorFilter.mode(theme.colors.text87, BlendMode.srcIn),
         ),
         const SizedBox(width: 2.5),
         Text(
           text,
           style: TextStyle(
-            fontFamily: urbanist,
             fontSize: 14,
             color: theme.colors.text87,
             fontWeight: FontWeight.w500,

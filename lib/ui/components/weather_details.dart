@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:weather_app/ui/theme/font_families.dart';
 import '../cubit/theme/theme_cubit.dart';
 import '../model/weather_info.dart';
 
@@ -59,7 +58,6 @@ class WeatherDetailsCard extends StatelessWidget {
           Text(
             info.value,
             style: TextStyle(
-              fontFamily: urbanist,
               color: theme.colors.text87,
               fontSize: 20,
               letterSpacing: 0.25,
@@ -70,7 +68,6 @@ class WeatherDetailsCard extends StatelessWidget {
           Text(
             info.label,
             style: TextStyle(
-              fontFamily: urbanist,
               color: theme.colors.text60,
               fontSize: 14,
               letterSpacing: 0.25,
