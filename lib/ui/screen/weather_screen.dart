@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../cubit/theme/theme_cubit.dart';
 
 class WeatherScreen extends StatelessWidget {
@@ -13,6 +14,7 @@ class WeatherScreen extends StatelessWidget {
         child: Text(
           'Welcome to Weather App',
           style: TextStyle(
+            color: theme.colors.backgroundStart,
             fontSize: 24,
             fontWeight: FontWeight.bold,
           ),
