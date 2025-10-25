@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:weather_app/ui/theme/app_colors.dart';
 import 'package:weather_app/ui/theme/font_families.dart';
-
+import '../cubit/theme/theme_cubit.dart';
 import '../model/weather_info.dart';
 
 class WeatherDetails extends StatelessWidget {
@@ -42,12 +42,13 @@ class WeatherDetailsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.watch<ThemeCubit>().state;
     return Card(
       elevation: 0,
-      color: AppColors.dayBackground,
+      color: theme.colors.background,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(24),
-        side: const BorderSide(color: AppColors.dayBorder, width: 1),
+        side: BorderSide(color: theme.colors.border, width: 1),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -57,9 +58,9 @@ class WeatherDetailsCard extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             info.value,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: urbanist,
-              color: AppColors.dayText87,
+              color: theme.colors.text87,
               fontSize: 20,
               letterSpacing: 0.25,
               fontWeight: FontWeight.w500,
@@ -68,9 +69,9 @@ class WeatherDetailsCard extends StatelessWidget {
           const SizedBox(height: 2),
           Text(
             info.label,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: urbanist,
-              color: AppColors.dayText60,
+              color: theme.colors.text60,
               fontSize: 14,
               letterSpacing: 0.25,
               fontWeight: FontWeight.w400,
