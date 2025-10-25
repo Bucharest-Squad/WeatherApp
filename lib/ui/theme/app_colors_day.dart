@@ -34,4 +34,34 @@ class DayAppColors extends AppColors {
 
   @override
   Color get border => const Color(0x14060414);
+
+  @override
+  Color get weatherIconColor => const Color(0xFF00619D);
+
+  @override
+  Color get glassmorphismBackground => const Color(0x33FFFFFF);
+
+  @override
+  Color get glassmorphismBorder => const Color(0x4DFFFFFF);
+
+  @override
+  Color get cardShadow => const Color(0x1A000000);
+
+  @override
+  Color get temperatureColor => const Color(0xFF060414);
+
+  @override
+  Color get statusColor => const Color(0x99060414);
+
+  @override
+  Color get locationColor => const Color(0xFF323232);
+
+  @override
+  Color get maxMinCardBackground => const Color(0x14060414);
+
+  @override
+  Color get maxMinDividerColor => const Color(0x99060414);
+
+  @override
+  Color get maxMinTextColor => const Color(0x99060414);
 }
