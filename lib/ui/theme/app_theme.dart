@@ -1,9 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/ui/theme/app_colors.dart';
+import 'font_families.dart';
 
 abstract class AppTheme {
-  ThemeData get themeData;
-  LinearGradient get backgroundGradient;
-  Color get textColor;
-  Color get accentColor;
-  String get fontFamily;
+  final Brightness brightness;
+  final AppColors colors;
+
+  AppTheme({required this.brightness, required this.colors});
+
+  ThemeData get themeData {
+    return ThemeData(
+      fontFamily: urbanist,
+      brightness: brightness,
+      primaryColor: colors.primary,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: colors.primary,
+        brightness: brightness,
+        primary: colors.primary,
+        secondary: colors.accent,
+        onPrimary: colors.onPrimary,
+        onSurface: colors.text,
+      ),
+    );
+  }
 }
