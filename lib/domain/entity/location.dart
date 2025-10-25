@@ -1,8 +1,15 @@
 import '../model/location_coordinate.dart';
 
 class Location {
-  final LocationCoordinate coordinate;
-  final String cityName;
+  final double latitude;
+  final double longitude;
+  final String country;
+  final String city;
 
-  Location({required this.coordinate, required this.cityName});
+  Location({
+    required this.latitude,
+    required this.longitude,
+    required this.country,
+    required this.city,
+  });
 }
