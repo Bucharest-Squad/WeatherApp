@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:weather_app/gen/assets.gen.dart';
 import 'package:weather_app/ui/theme/font_families.dart';
 import '../cubit/theme/theme_cubit.dart';
 
@@ -33,8 +33,7 @@ class MaxMinTempCard extends StatelessWidget {
           SizedBox(
             width: 12,
             height: 12,
-            child: SvgPicture.asset(
-              'assets/images/arrow_up.svg',
+            child: Assets.images.arrowUp.svg(
               width: 12,
               height: 12,
               colorFilter: ColorFilter.mode(
@@ -67,8 +66,7 @@ class MaxMinTempCard extends StatelessWidget {
           SizedBox(
             width: 12,
             height: 12,
-            child: SvgPicture.asset(
-              'assets/images/arrow_down.svg',
+            child: Assets.images.arrowDown.svg(
               width: 12,
               height: 12,
               colorFilter: ColorFilter.mode(
