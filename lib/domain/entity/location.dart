@@ -1,5 +1,3 @@
-import '../model/location_coordinate.dart';
-
 class Location {
   final double latitude;
   final double longitude;

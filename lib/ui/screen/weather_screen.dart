@@ -68,7 +68,7 @@ class WeatherScreen extends StatelessWidget {
 }
 
 class _CustomLoading extends StatelessWidget {
-  const _CustomLoading({super.key});
+  const _CustomLoading();
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +79,7 @@ class _CustomLoading extends StatelessWidget {
 class _WeatherScreenContent extends StatelessWidget {
   final Weather weather;
 
-  const _WeatherScreenContent({super.key, required this.weather});
+  const _WeatherScreenContent({required this.weather});
 
   @override
   Widget build(BuildContext context) {
