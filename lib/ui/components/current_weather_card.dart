@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'max_min_temp_card.dart';
 import '../cubit/theme/theme_cubit.dart';
-import 'package:weather_app/ui/theme/font_families.dart';
 import '../model/current_weather.dart';
 
 class CurrentWeatherCard extends StatelessWidget {
@@ -42,30 +41,15 @@ class CurrentWeatherCard extends StatelessWidget {
                       shape: BoxShape.circle,
                       gradient: RadialGradient(
                         colors: [
-                          Color.fromRGBO(
-                            theme.colors.weatherIconColor.red,
-                            theme.colors.weatherIconColor.green,
-                            theme.colors.weatherIconColor.blue,
-                            0.25,
-                          ),
-                          Color.fromRGBO(
-                            theme.colors.weatherIconColor.red,
-                            theme.colors.weatherIconColor.green,
-                            theme.colors.weatherIconColor.blue,
-                            0.08,
-                          ),
+                          theme.colors.weatherIconColor.withAlpha(64),
+                          theme.colors.weatherIconColor.withAlpha(64),
                           Colors.transparent,
                         ],
                         stops: const [0.0, 0.3, 1.0],
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Color.fromRGBO(
-                            theme.colors.weatherIconColor.red,
-                            theme.colors.weatherIconColor.green,
-                            theme.colors.weatherIconColor.blue,
-                            0.2,
-                          ),
+                          color: theme.colors.weatherIconColor.withAlpha(50),
                           blurRadius: 70,
                           spreadRadius: 5,
                           offset: const Offset(-5, 5),
@@ -94,7 +78,6 @@ class CurrentWeatherCard extends StatelessWidget {
           Text(
             '${currentWeather.temperature}${currentWeather.unit}',
             style: TextStyle(
-              fontFamily: urbanist,
               fontSize: 64,
               fontWeight: FontWeight.w600,
               letterSpacing: 0.25,
@@ -106,7 +89,6 @@ class CurrentWeatherCard extends StatelessWidget {
           Text(
             currentWeather.status,
             style: TextStyle(
-              fontFamily: urbanist,
               fontSize: 16,
               fontWeight: FontWeight.w500,
               letterSpacing: 0.25,

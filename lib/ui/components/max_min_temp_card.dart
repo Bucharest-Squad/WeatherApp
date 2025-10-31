@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/gen/assets.gen.dart';
-import 'package:weather_app/ui/theme/font_families.dart';
 import '../cubit/theme/theme_cubit.dart';
 
 class MaxMinTempCard extends StatelessWidget {
@@ -46,7 +45,6 @@ class MaxMinTempCard extends StatelessWidget {
           Text(
             '$highTemp$unit',
             style: TextStyle(
-              fontFamily: urbanist,
               fontSize: 16,
               fontWeight: FontWeight.w500,
               letterSpacing: 0.25,
@@ -79,7 +77,6 @@ class MaxMinTempCard extends StatelessWidget {
           Text(
             '$lowTemp$unit',
             style: TextStyle(
-              fontFamily: urbanist,
               fontSize: 16,
               fontWeight: FontWeight.w500,
               letterSpacing: 0.25,
