@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../gen/assets.gen.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../cubit/theme/theme_cubit.dart';
 
 class LocationRow extends StatelessWidget {
@@ -14,7 +14,8 @@ class LocationRow extends StatelessWidget {
       crossAxisAlignment: WrapCrossAlignment.center,
       spacing: 4,
       children: [
-        Assets.images.location.svg(
+        SvgPicture.asset(
+          'assets/images/location.svg',
           colorFilter: ColorFilter.mode(theme.colors.text, BlendMode.srcIn),
         ),
         Text(

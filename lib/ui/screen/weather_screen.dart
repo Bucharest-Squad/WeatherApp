@@ -3,14 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/di/service_locator.dart';
 import 'package:weather_app/domain/entity/weather.dart';
 import 'package:weather_app/domain/model/location_coordinate.dart';
-import 'package:weather_app/ui/components/daily_weather.dart';
 import 'package:weather_app/ui/cubit/location/location_cubit.dart';
 import 'package:weather_app/ui/cubit/weather/weather_cubit.dart';
-import 'package:weather_app/ui/model/daily_weather.dart';
-import '../../gen/assets.gen.dart';
+
+import '../components/current_weather_card.dart';
 import '../components/location_row.dart';
 import '../components/weather_details.dart';
 import '../cubit/theme/theme_cubit.dart';
+import '../model/current_weather.dart';
 import '../model/weather_info.dart';
 
 class WeatherScreen extends StatelessWidget {
@@ -44,7 +44,9 @@ class WeatherScreen extends StatelessWidget {
             child: BlocConsumer<WeatherCubit, WeatherState>(
               listener: (context, state) {
                 if (state is WeatherLoaded) {
-                  context.read<ThemeCubit>().updateTheme(state.weather.isDaytime);
+                  context.read<ThemeCubit>().updateTheme(
+                    state.weather.isDaytime,
+                  );
                 }
               },
               builder: (context, state) {
@@ -57,7 +59,7 @@ class WeatherScreen extends StatelessWidget {
                   WeatherError() => _CustomLoading(),
                 };
               },
-            )
+            ),
           ),
         ),
       ),
@@ -66,17 +68,13 @@ class WeatherScreen extends StatelessWidget {
 }
 
 class _CustomLoading extends StatelessWidget {
-  const _CustomLoading({
-    super.key,
-  });
+  const _CustomLoading({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Center(child: CircularProgressIndicator());
   }
 }
-
-
 
 class _WeatherScreenContent extends StatelessWidget {
   final Weather weather;
@@ -100,37 +98,45 @@ class _WeatherScreenContent extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: CurrentWeatherCard(
+                currentWeather: CurrentWeather.sample(),
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
             child: WeatherDetails(
               weatherInfo: [
                 WeatherInfo(
-                  iconPath: Assets.images.fastWind.path,
+                  iconPath: 'assets/images/fast_wind.svg',
                   value:
                       '${weather.currentDayWeatherStatus.windSpeed.speed.round()} ${weather.currentDayWeatherStatus.windSpeed.unit.name}',
                   label: 'Wind',
                 ),
                 WeatherInfo(
-                  iconPath: Assets.images.humidity.path,
+                  iconPath: 'assets/images/humidity.svg',
                   value: '${weather.currentDayWeatherStatus.humidity.round()}%',
                   label: 'Humidity',
                 ),
                 WeatherInfo(
-                  iconPath: Assets.images.rain.path,
+                  iconPath: 'assets/images/rain.svg',
                   value: '${weather.currentDayWeatherStatus.rain.round()}%',
                   label: 'Rain',
                 ),
                 WeatherInfo(
-                  iconPath: Assets.images.uv.path,
+                  iconPath: 'assets/images/uv.svg',
                   value: '${weather.currentDayWeatherStatus.uvIndex.round()}',
                   label: 'UV Index',
                 ),
                 WeatherInfo(
-                  iconPath: Assets.images.pressure.path,
+                  iconPath: 'assets/images/pressure.svg',
                   value:
                       '${weather.currentDayWeatherStatus.pressure.pressure.round()} ${weather.currentDayWeatherStatus.pressure.unit.name}',
                   label: 'Pressure',
                 ),
                 WeatherInfo(
-                  iconPath: Assets.images.temperature.path,
+                  iconPath: 'assets/images/temperature.svg',
                   value:
                       '${weather.currentDayWeatherStatus.feelsLike.temperature.round()} ${weather.currentDayWeatherStatus.feelsLike.unit.name}',
                   label: 'Feels Like',

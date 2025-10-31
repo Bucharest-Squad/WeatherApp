@@ -28,4 +28,24 @@ abstract class AppColors {
   );
 
   Color get border;
+
+  Color get weatherIconColor;
+
+  Color get glassmorphismBackground;
+
+  Color get glassmorphismBorder;
+
+  Color get cardShadow;
+
+  Color get temperatureColor;
+
+  Color get statusColor;
+
+  Color get locationColor;
+
+  Color get maxMinCardBackground;
+
+  Color get maxMinDividerColor;
+
+  Color get maxMinTextColor;
 }
