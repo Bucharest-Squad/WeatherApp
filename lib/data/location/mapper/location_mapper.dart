@@ -8,6 +8,8 @@ class LocationMapper {
       longitude: dto.longitude,
       country: dto.country,
       city: dto.city,
+      coordinate: null,
+      cityName: '',
     );
   }
 }

@@ -7,6 +7,7 @@ import 'package:weather_app/ui/cubit/location/location_cubit.dart';
 import 'package:weather_app/ui/cubit/weather/weather_cubit.dart';
 
 import '../components/current_weather_card.dart';
+import '../components/hourly_weather_row.dart';
 import '../components/location_row.dart';
 import '../components/weather_details.dart';
 import '../cubit/theme/theme_cubit.dart';
@@ -34,19 +35,19 @@ class WeatherScreen extends StatelessWidget {
             listener: (context, state) {
               if (state is LocationLoaded) {
                 context.read<WeatherCubit>().getWeather(
-                  locationCoordinate: LocationCoordinate(
-                    latitude: state.location.latitude,
-                    longitude: state.location.longitude,
-                  ),
-                );
+                      locationCoordinate: LocationCoordinate(
+                        latitude: state.location.latitude,
+                        longitude: state.location.longitude,
+                      ),
+                    );
               }
             },
             child: BlocConsumer<WeatherCubit, WeatherState>(
               listener: (context, state) {
                 if (state is WeatherLoaded) {
                   context.read<ThemeCubit>().updateTheme(
-                    state.weather.isDaytime,
-                  );
+                        state.weather.isDaytime,
+                      );
                 }
               },
               builder: (context, state) {
@@ -54,8 +55,8 @@ class WeatherScreen extends StatelessWidget {
                   WeatherInitial() => _CustomLoading(),
                   WeatherLoading() => _CustomLoading(),
                   WeatherLoaded() => _WeatherScreenContent(
-                    weather: state.weather,
-                  ),
+                      weather: state.weather,
+                    ),
                   WeatherError() => _CustomLoading(),
                 };
               },
@@ -83,6 +84,8 @@ class _WeatherScreenContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.watch<ThemeCubit>().state;
+
     return Padding(
       padding: EdgeInsets.only(
         top: MediaQuery.of(context).padding.top,
@@ -143,6 +146,23 @@ class _WeatherScreenContent extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 12.0,top: 24.0, bottom: 12.0),
+              child: Text(
+                'Today',
+                style: TextStyle(
+                  color: theme.colors.text,
+                  fontSize: 20,
+                  letterSpacing: 0.25,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: HourlyWeatherDetails(hourlyWeather: weather.hourlyStatus),
           ),
         ],
       ),
