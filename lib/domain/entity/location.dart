@@ -7,7 +7,9 @@ class Location {
   Location({
     required this.latitude,
     required this.longitude,
-    required this.country,
+    required this.country ,
     required this.city,
+    required coordinate,
+    required String cityName,
   });
 }
